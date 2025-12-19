@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <title>AR.js Video Marker Demo</title>
+
+  <!-- A-Frame -->
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+
+  <!-- AR.js -->
+  <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+
+    #hint {
+      position: fixed;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Gợi ý cho user -->
+  <div id="hint">📸 Đưa camera vào marker để xem video</div>
+
+  <a-scene
+    embedded
+    arjs="sourceType: webcam; debugUIEnabled: false;"
+    renderer="logarithmicDepthBuffer: true;"
+  >
+
+    <!-- MARKER -->
+    <!-- Dùng Hiro marker mặc định -->
+    <a-marker preset="hiro">
+
+      <!-- VIDEO AR -->
+      <a-video
+        src="#video"
+        width="1"
+        height="0.56"
+        position="0 0 0"
+        rotation="-90 0 0"
+        autoplay
+        loop>
+      </a-video>
+
+    </a-marker>
+
+    <!-- CAMERA -->
+    <a-entity camera></a-entity>
+  </a-scene>
+
+  <!-- VIDEO ASSET -->
+  <video
+    id="video"
+    src="assets/video.mp4"
+    preload="auto"
+    autoplay
+    loop
+    muted
+    playsinline
+    webkit-playsinline
+    crossorigin="anonymous">
+  </video>
+
+</body>
+</html>
